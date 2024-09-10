@@ -17,6 +17,11 @@ class Hello extends Component{
             this.setState({
                 users:data.users
             })
+        }).catch(err=>{
+            console.log(err);
+            this.setState({
+                users:[{email:'this api is not running right now'}]
+            })
         })
     }
 
