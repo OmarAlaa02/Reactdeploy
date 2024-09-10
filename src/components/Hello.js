@@ -5,28 +5,28 @@ class Hello extends Component{
     constructor(){
         super();
         this.state={
-            name:'omar'
+            users:[]
         }
     }
 
-    changeName =() =>{
-        if(this.state.name==='omar')
+
+    getemails=()=>{
+        fetch('https://6mgtfvcn-5000.uks1.devtunnels.ms/getReactUser')
+        .then(res=>res.json())
+        .then(data=>{   
             this.setState({
-                name:'asser'
+                users:data.users
             })
-        else
-            this.setState({
-            name:'omar'
         })
-            
     }
 
     render(){
-        const { name }=this.state;
         return (
             <div>
-                <h1>hello {name}</h1>
-                <button onClick={this.changeName}>change name</button>
+                {
+                    this.state.users.map(user => <h1>{user.email}</h1>)
+                }
+                <button onClick={this.getemails}>get users</button>
             </div>
         ) 
     }
